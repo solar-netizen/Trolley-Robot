@@ -14,20 +14,21 @@
       - Lift a load 5-10 cm
 
 ## Robot Part List
-| Qty | Part Name | Part | Source |
-| ----------- | ----------- | ----------- | ----------- |
-| 1 | Robot Body | 3D Printed Chassis | Own |
-| 1 | Microcontroller | ESP32-NODEMCU | Owned |
-| 4 | Ultrasonic Sensor | HC-SR04 / Equivalent | School |
-| 2 | Encoder Wheel | 3D Printed | Own |
-| 2 | Optohaarukka 8mm | EESX4070 | Own |
-| 1 | 6x AA Battery Holder | PARPID-6XAA-N | Own |
-| 4 | Motor with 65mm Wheel | KSH3C172 | Own |
-| 2 | DC Motor Driver | MOT-MDRIVE | Own |
+| Qty | Part Name | Part | Source | Acquired |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| 1 | Robot Body | 3D Printed Chassis | Own | |
+| 1 | Microcontroller | ESP32-NODEMCU | Own | x |
+| 4 | Ultrasonic Sensor | HC-SR04 / Equivalent | School | |
+| 2 | Encoder Wheel | 3D Printed | Own | |
+| 2 | Optohaarukka 8mm | EESX4070 | Own | x |
+| 1 | 6x AA Battery Holder | PARPID-6XAA-N | Own | x |
+| 4 | Motor with 65mm Wheel | KSH3C172 | Own | x |
+| 2 | DC Motor Driver | MOT-MDRIVE | Own | x |
 
 ## Transmitter Part List
-| Qty | Part Name | Part | Source |
-| ----------- | ----------- | ----------- | ----------- |
-| 1 | IR Transmitter | ECT-CT0030IRE | Own |
+| Qty | Part Name | Part | Source | Acquired |
+| ----------- | ----------- | ----------- | ----------- | ----------- |
+| 1 | IR Transmitter | ECT-CT0030IRE | Own | x |
+| 1 | Transmitter Body | 3D Printed | Own |  |
 
 *add more parts here*
