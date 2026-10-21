@@ -26,6 +26,8 @@
 | 2 | DC Motor Driver | MOT-MDRIVE | Own |
 
 ## Transmitter Part List
+| Qty | Part Name | Part | Source |
+| ----------- | ----------- | ----------- | ----------- |
 | 1 | IR Transmitter | ECT-CT0030IRE | Own |
 
 *add more parts here*
