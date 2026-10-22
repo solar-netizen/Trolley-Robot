@@ -46,6 +46,9 @@
 
 *add more parts here*
 
+## Flowchart
+https://app.diagrams.net/#G1GABdAryWbn5LW4cGvGT-ZSyHTB9zIrNB
+
 ## Project Team Members
 - Kalle Kuusila
 - Antton Koivuneva
