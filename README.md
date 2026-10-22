@@ -45,3 +45,7 @@
 | 1 | Transmitter Body |  |  |
 
 *add more parts here*
+
+## Project Team Members
+- Kalle Kuusila
+- Antton Koivuneva
