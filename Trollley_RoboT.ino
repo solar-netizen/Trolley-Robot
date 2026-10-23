@@ -72,4 +72,3 @@ if (millis() - lastPrintTime >= PrintIntervalMs)
     lastPrintTime = millis();
   }
 }
-asdasdasdaskfnjalkasjlmzxömcölasmclömslöAM
