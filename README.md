@@ -29,6 +29,7 @@
 | 1 | 6x AA Battery Holder | PARPID-6XAA-N | Own | x |
 | 4 | Motor with 65mm Wheel | KSH3C172 | Own | x |
 | 2 | DC Motor Driver | MOT-MDRIVE | Own | x |
+| 2 | IR Sensor | TSOP38238 | Own | x |
 
 ## Transmitter Part List
 | Qty | Part Name | Part | Source | Acquired |
@@ -41,7 +42,7 @@
 | 1 | Robot Chassis  |  |  |
 | 1 | Electronics Bay  |  |  |
 | 2 | Encoder Wheel | x | x |
-| 2 | Encoder Mount  |  |  |
+| 2 | Encoder Mount  | x | x |
 | 1 | Transmitter Body |  |  |
 
 *add more parts here*
