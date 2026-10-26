@@ -21,14 +21,13 @@ const int Wait = 1000;        // Delay for stopping wheels when emitter signal i
 const int StopIR = 2000;      // Signal strength (0-4095) that is too strong = emitter too close = stop wheels 
 const int IRLostStrength = 50;        // The strength of signal (0-4095) where there is no signal = operator lost
 
-/*In progress --->
-const int TurnDriveTime =     // (ms) The time needed for the motors to be ON when performing the drive (aprox. 20cm) after turning
-const int TurnDrivePower =    // PWM value (0-255) for the motors when performing the drive (aprox. 20cm) after turning
-const int RightTurnTime =
-const int RightTurnPower =
-const int LeftTurnTime =
-const int LeftTurnPower =
-*/
+const int TurnTimeMs = 400;        // (ms) Time to spin for a 90° turn. PLACEHOLDER, tune by testing
+const int TurnPower = 150;         // PWM value (0-255) for the motors during a turn. PLACEHOLDER, tune by testing
+
+const int TurnDriveTimeMs = 300;   // (ms) Time motors are ON for the ~20 cm drive after a turn. PLACEHOLDER, tune by testing
+const int TurnDrivePower = 150;    // PWM value (0-255) for the drive after a turn. PLACEHOLDER, tune by testing
+
+
 
 const unsigned long PrintIntervalMs = 1000;    // How often code prints values to serialmonitor (ms)
 unsigned long lastPrintTime = 0;               // millis() value at the last print
@@ -92,7 +91,8 @@ else
 {
   IRLost = false;           // signal is back, reset the memory
 }
-  
+
+// Here starts the obstacle detection and obstacle steering
 float FrontDistance = MeasureDistance (FrontTrigPin, FrontEchoPin);
 float RightDistance = MeasureDistance (RightTrigPin, RightEchoPin);
 float LeftDistance = MeasureDistance (LeftTrigPin, LeftEchoPin);
@@ -104,7 +104,7 @@ analogWrite(LeftSpeed, 0);
   {
     if(LeftDistance<ObstacleCm)
     {
-      // Here goes the commands for motor drivers to perform a 180° turn to the right
+      // Here goes the commands for motor drivers to perform a 2x90° turn to the right
     }
     else
     {
@@ -116,25 +116,67 @@ analogWrite(LeftSpeed, 0);
   
 } // THIS IS THE VOID LOOP END
 
+//This function is for turning to the right
+void TurnRight90()
+{
+  // Make sure the pins that we dont want to be on are off
+  analogWrite(LeftBackward, 0);
+  analogWrite(RightForward, 0);
+  // Turn on the pins that are needed for turn
+  analogWrite(LeftForward, TurnPower); //  Power is tested and tuned in the defined constants
+  analogWrite(RightBackward, TurnPower);
+  // The duration that the motors excecute the turn for
+  delay(TurnTimeMs);
+  // Stop
+  analogWrite(LeftForward, 0);
+  analogWrite(RightBackward, 0);
+}
+
+//This function is for turning to the left
+void TurnLeft90()
+{
+   // Make sure the pins that we dont want to be on are off
+  analogWrite(LeftForward, 0);
+  analogWrite(RightBackward, 0);
+  // Turn on the pins that are needed for turn
+  analogWrite(LeftBackward, TurnPower); //  Power is tested and tuned in the defined constants
+  analogWrite(RightForward, TurnPower);
+  // The duration that the motors excecute the turn for
+  delay(TurnTimeMs);
+  // Stop
+  analogWrite(LeftBackward, 0);
+  analogWrite(RightForward, 0);
+}
+
+//This function is for turning 180° to the right
+void TurnRight180()
+{
+  // Make sure the pins that we dont want to be on are off
+  analogWrite(LeftBackward, 0);
+  analogWrite(RightForward, 0);
+  // Turn on the pins that are needed for turn
+  analogWrite(LeftForward, TurnPower); //  Power is tested and tuned in the defined constants
+  analogWrite(RightBackward, TurnPower);
+  // The duration that the motors excecute the turn for
+  delay(2*TurnTimeMs);
+  // Stop
+  analogWrite(LeftForward, 0);
+  analogWrite(RightBackward, 0);
+}
+
 // This function is for measuring distance using the US-Sensors
 float MeasureDistance(int trigPin, int echoPin)
 {
   // Clear the table: trig low, short wait
   digitalWrite(trigPin, LOW);
   delayMicroseconds(2);
-
   // Send the "go" pulse: trig high for 10 microseconds, then low
   digitalWrite(trigPin, HIGH);
   delayMicroseconds(10);
   digitalWrite(trigPin, LOW);
-
   // Listen: how long did the echo pin stay high? (microseconds)
   long Duration = pulseIn(echoPin, HIGH);
-
   // Convert to cm: speed of sound times time, divided by 2 for the round trip
   float Distance = Duration * 0.0343 / 2;
-
   return Distance;  // hand the number back to whoever called the function
-}
-  
 }
