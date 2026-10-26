@@ -19,6 +19,7 @@ const int LeftSpeed = 14;     // PWM pin that controls Left wheel speeds
 const int ObstacleCm = 30;    // Distance detected by US-Sensors that force wheels to stop
 const int Wait = 1000;        // Delay for stopping wheels when emitter signal is lost 
 const int StopIR = 2000;      // Signal strength (0-4095) that is too strong = emitter too close = stop wheels 
+const int IRLostStrength = 50;        // The strength of signal (0-4095) where there is no signal = operator lost
 
 /*In progress --->
 const int TurnDriveTime =     // (ms) The time needed for the motors to be ON when performing the drive (aprox. 20cm) after turning
@@ -29,8 +30,10 @@ const int LeftTurnTime =
 const int LeftTurnPower =
 */
 
-const unsigned long PrintIntervalMs = 1000;  // How often code prints values to serialmonitor (ms)
-unsigned long lastPrintTime = 0;             // millis() value at the last print
+const unsigned long PrintIntervalMs = 1000;    // How often code prints values to serialmonitor (ms)
+unsigned long lastPrintTime = 0;               // millis() value at the last print
+bool IRLost = false;                       // true once we've noticed the signal is gone
+unsigned long IRLostTime = 0;              // millis() value when the signal first went missing
 
 
 void setup()
@@ -71,4 +74,67 @@ if (millis() - lastPrintTime >= PrintIntervalMs)
 
     lastPrintTime = millis();
   }
+  
+if (RightIRStrength <= IRLostStrength && LeftIRStrength <= IRLostStrength)
+{
+  if (!IRLost)
+  {
+    IRLost = true;
+    IRLostTime = millis();          
+  }
+  else if (millis() - IRLostTime >= Wait)
+  {
+    analogWrite (RightSpeed, 0);  // Cut power to wheels when there is no signal after the wait
+    analogWrite (LeftSpeed, 0);
+  }
+}
+else
+{
+  IRLost = false;           // signal is back, reset the memory
+}
+  
+float FrontDistance = MeasureDistance (FrontTrigPin, FrontEchoPin);
+float RightDistance = MeasureDistance (RightTrigPin, RightEchoPin);
+float LeftDistance = MeasureDistance (LeftTrigPin, LeftEchoPin);
+if (FrontDistance<ObstacleCm)
+{
+analogWrite(RightSpeed, 0);
+analogWrite(LeftSpeed, 0);
+  if (RightDistance<ObstacleCm)
+  {
+    if(LeftDistance<ObstacleCm)
+    {
+      // Here goes the commands for motor drivers to perform a 180° turn to the right
+    }
+    else
+    {
+      // Here goes to commands for motor drivers to perform a 90° turn to the Left and drive 20cm forward
+    }
+  }
+    
+}
+  
+} // THIS IS THE VOID LOOP END
+
+// This function is for measuring distance using the US-Sensors
+float MeasureDistance(int trigPin, int echoPin)
+{
+  // Clear the table: trig low, short wait
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+
+  // Send the "go" pulse: trig high for 10 microseconds, then low
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+
+  // Listen: how long did the echo pin stay high? (microseconds)
+  long Duration = pulseIn(echoPin, HIGH);
+
+  // Convert to cm: speed of sound times time, divided by 2 for the round trip
+  float Distance = Duration * 0.0343 / 2;
+
+  return Distance;  // hand the number back to whoever called the function
+}
+  
 }
