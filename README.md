@@ -39,9 +39,10 @@
 ## 3D Printed Part List
 | Qty | Part | Designed | Made |
 | ----------- | ----------- | ----------- | ----------- |
-| 1 | Robot Chassis  |  |  |
+| 1 | Robot Chassis  | x | x |
 | 1 | Electronics Bay  |  |  |
 | 2 | Encoder Wheel | x | x |
+| 4 | Sensor Housing | x | x |
 | 2 | Encoder Mount  | x | x |
 | 1 | Transmitter Body |  |  |
 
