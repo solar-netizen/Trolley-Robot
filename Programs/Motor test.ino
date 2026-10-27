@@ -5,11 +5,10 @@
 //   2. Drive backward 20 cm
 //   3. Turn right 90 degrees
 //   4. Turn left 90 degrees
+//   5. Spin right 360 degrees (easy to judge by eye, used for calibration)
 // All movements count encoder ticks instead of using fixed delays.
 // Each movement stops when EITHER side reaches the target ticks,
 // or when the timeout ends.
-// If everything is accurate, the robot ends where it started,
-// facing the same way.
 // =====================================================================
 
 // ---------- Motor pins (placeholders, update after wiring) ----------
@@ -23,9 +22,15 @@ const int LeftEncoderPin = 18;
 const int RightEncoderPin = 19;
 
 // ---------- Robot measurements (MEASURE THESE ON THE REAL ROBOT) ----------
-const float TrackWidthCm = 15.0;        // Distance between left and right wheels, center to center
+const float TrackWidthCm = 18.0;        // Distance between left and right wheels, center to center
 const float WheelDiameterCm = 6.5;      // Wheel diameter from the parts list
 const int TicksPerRevolution = 20;      // Slots on the encoder disk
+
+// ---------- Calibration ----------
+// If the 360 spin turns too little, make this number BIGGER.
+// If it turns too much, make it SMALLER.
+// Example: the spin only reaches 300 degrees -> 1.0 * 360 / 300 = 1.2
+const float TurnCalibration = 1.0;
 
 // ---------- Distances ----------
 const float DriveDistanceCm = 20.0;     // How far to drive forward and backward
@@ -33,9 +38,12 @@ const float DriveDistanceCm = 20.0;     // How far to drive forward and backward
 // ---------- Calculated values (computed from the numbers above) ----------
 const float CmPerTick = (3.14159 * WheelDiameterCm) / TicksPerRevolution;   // About 1.02 cm
 
-// Ticks each wheel needs for a 90 degree turn:
-// a quarter of a full circle with the track width as the diameter
-const long Turn90Ticks = ((3.14159 * TrackWidthCm) / 4.0) / CmPerTick;      // About 11 ticks
+// Ticks each wheel needs for a full 360 degree spin:
+// each wheel travels the full circle, with the track width as the diameter
+const long Turn360Ticks = ((3.14159 * TrackWidthCm) / CmPerTick) * TurnCalibration;
+
+// A 90 degree turn is a quarter of the full spin
+const long Turn90Ticks = Turn360Ticks / 4;
 
 // Ticks each wheel needs to drive the set distance in a straight line
 const long DriveTicks = DriveDistanceCm / CmPerTick;                        // About 19 ticks
@@ -85,6 +93,8 @@ void setup()
 
   StopMotors();
 
+  Serial.print("Target ticks for 360 degree spin: ");
+  Serial.println(Turn360Ticks);
   Serial.print("Target ticks for 90 degree turn: ");
   Serial.println(Turn90Ticks);
   Serial.print("Target ticks for the drive: ");
@@ -110,6 +120,10 @@ void loop()
 
   Serial.println("Turning left 90");
   TurnLeftByTicks(Turn90Ticks);
+  delay(SettleMs);
+
+  Serial.println("Spinning right 360");
+  TurnRightByTicks(Turn360Ticks);
 
   Serial.println("Sequence done, check the result");
   delay(PauseMs);
