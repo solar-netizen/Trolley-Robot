@@ -12,14 +12,14 @@
 // =====================================================================
 
 // ---------- Motor pins (placeholders, update after wiring) ----------
-const int RightForward = 9;     // PWM on this pin drives the right side forward
-const int RightBackward = 10;   // PWM on this pin drives the right side backward
-const int LeftForward = 11;     // PWM on this pin drives the left side forward
-const int LeftBackward = 12;    // PWM on this pin drives the left side backward
+const int RightForward = 35;     // PWM on this pin drives the right side forward
+const int RightBackward = 34;   // PWM on this pin drives the right side backward
+const int LeftForward = 33;     // PWM on this pin drives the left side forward
+const int LeftBackward = 32;    // PWM on this pin drives the left side backward
 
 // ---------- Encoder pins (placeholders, must be interrupt-capable) ----------
-const int LeftEncoderPin = 18;
-const int RightEncoderPin = 19;
+const int LeftEncoderPin = 22;
+const int RightEncoderPin = 23;
 
 // ---------- Robot measurements (MEASURE THESE ON THE REAL ROBOT) ----------
 const float TrackWidthCm = 18.0;        // Distance between left and right wheels, center to center
