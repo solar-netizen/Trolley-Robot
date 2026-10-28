@@ -24,7 +24,7 @@
 | Qty | Part Name | Part | Source | Acquired |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 1 | Microcontroller | ESP32-NODEMCU | Own | x |
-| 4 | Ultrasonic Sensor | HC-SR04 / Equivalent | School |  |
+| 4 | Ultrasonic Sensor | HC-SR04 / Equivalent | School | x |
 | 2 | Optohaarukka 8mm | EESX4070 | Own | x |
 | 1 | 6x AA Battery Holder | PARPID-6XAA-N | Own | x |
 | 4 | Motor with 65mm Wheel | KSH3C172 | Own | x |
