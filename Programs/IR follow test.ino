@@ -11,15 +11,15 @@
 // =====================================================================
 
 // ---------- Motor pins (same as the movement test) ----------
-const int RightForward = 25;    // PWM on this pin drives the right side forward
+const int RightForward = 27;    // PWM on this pin drives the right side forward
 const int RightBackward = 26;   // PWM on this pin drives the right side backward
 const int LeftForward = 33;     // PWM on this pin drives the left side forward
 const int LeftBackward = 32;    // PWM on this pin drives the left side backward
 
 // ---------- IR receiver pins (placeholders, update after wiring) ----------
 // Input-capable pins only. 34 and 35 are fine here because these are inputs.
-const int LeftIRPin = 34;
-const int RightIRPin = 35;
+const int LeftIRPin = 21;
+const int RightIRPin = 19;
 
 // ---------- Memory values (what the robot remembers) ----------
 const int WaitingForSignal = 1;   // Startup: no signal seen yet, motors stay off
