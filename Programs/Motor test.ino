@@ -12,8 +12,8 @@
 // =====================================================================
 
 // ---------- Motor pins (placeholders, update after wiring) ----------
-const int RightForward = 35;     // PWM on this pin drives the right side forward
-const int RightBackward = 34;   // PWM on this pin drives the right side backward
+const int RightForward = 27;     // PWM on this pin drives the right side forward
+const int RightBackward = 26;   // PWM on this pin drives the right side backward
 const int LeftForward = 33;     // PWM on this pin drives the left side forward
 const int LeftBackward = 32;    // PWM on this pin drives the left side backward
 
