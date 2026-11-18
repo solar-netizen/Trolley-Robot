@@ -17,7 +17,6 @@ const int LeftForward = 33;     // PWM on this pin drives the left side forward
 const int LeftBackward = 32;    // PWM on this pin drives the left side backward
 
 // ---------- IR receiver pins (placeholders, update after wiring) ----------
-// Input-capable pins only. 34 and 35 are fine here because these are inputs.
 const int LeftIRPin = 21;
 const int RightIRPin = 19;
 
