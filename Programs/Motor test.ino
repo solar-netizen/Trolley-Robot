@@ -5,25 +5,25 @@
 //   2. Drive backward 20 cm
 //   3. Turn right 90 degrees
 //   4. Turn left 90 degrees
-//   5. Spin right 360 degrees (easy to judge by eye, used for calibration)
+//   5. Spin right 360 degrees
 // All movements count encoder ticks instead of using fixed delays.
 // Each movement stops when EITHER side reaches the target ticks,
 // or when the timeout ends.
 // =====================================================================
 
-// ---------- Motor pins (placeholders, update after wiring) ----------
+// ---------- Motor pins ( update after wiring) ----------
 const int RightForward = 27;     // PWM on this pin drives the right side forward
 const int RightBackward = 26;   // PWM on this pin drives the right side backward
 const int LeftForward = 33;     // PWM on this pin drives the left side forward
 const int LeftBackward = 32;    // PWM on this pin drives the left side backward
 
-// ---------- Encoder pins (placeholders, must be interrupt-capable) ----------
+// ---------- Encoder pins ----------
 const int LeftEncoderPin = 22;
 const int RightEncoderPin = 23;
 
-// ---------- Robot measurements (MEASURE THESE ON THE REAL ROBOT) ----------
+// ---------- Robot measurements  ----------
 const float TrackWidthCm = 18.0;        // Distance between left and right wheels, center to center
-const float WheelDiameterCm = 6.5;      // Wheel diameter from the parts list
+const float WheelDiameterCm = 6.5;      // Wheel diameter 
 const int TicksPerRevolution = 20;      // Slots on the encoder disk
 
 // ---------- Calibration ----------
