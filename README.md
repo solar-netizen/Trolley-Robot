@@ -17,8 +17,7 @@
 ### The robot should:
   - Follow an IR Transmitter while keeping a distance.
   - Avoid driving into obstacles such as walls and people, while keeping up with the operator.
-  - Be able to carry 1-2kg of external downwards load.
-  - Lift a load 5-10 cm
+  - Payload carrying might be necessary to be cut due to compromises
 
 ## Robot Part List
 | Qty | Part Name | Part | Source | Acquired |
