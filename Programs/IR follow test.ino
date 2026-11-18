@@ -62,6 +62,23 @@ void setup()
 }
 
 void loop()
+// Prints whether each receiver saw the signal during the last 200 ms
+void PrintSensors()
+{
+  if (millis() - LastSensorPrintTime >= SensorPrintMs)
+  {
+    LastSensorPrintTime = millis();
+
+    Serial.print("Left IR: ");
+    Serial.print(LeftSawSignal ? "SIGNAL (LOW)" : "none (HIGH)");
+    Serial.print("   Right IR: ");
+    Serial.println(RightSawSignal ? "SIGNAL (LOW)" : "none (HIGH)");
+
+    // Start over for the next 200 ms
+    LeftSawSignal = false;
+    RightSawSignal = false;
+  }
+}
 {
   // Active LOW: the pin reads LOW when the 38 kHz signal is seen
   bool LeftSees = (digitalRead(LeftIRPin) == LOW);
